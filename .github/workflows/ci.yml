@@ -6,13 +6,6 @@ on:
   workflow_dispatch: ~
 
 jobs:
-  phpstan:
-    name: "Install PHPStan"
-    runs-on: "ubuntu-latest"
-    strategy:
-      matrix:
-        php-version:
-            - '8.1'
   deps:
     name: "Install depedencies"
     runs-on: "ubuntu-latest"

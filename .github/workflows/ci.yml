@@ -28,7 +28,6 @@ jobs:
         run: nc -zv localhost 3306
       - name: "Install composer deps"
         run: |
-          export APP_ENV=test
           composer install --prefer-dist --no-interaction --no-progress
       - name: "Run PHPStan"
         run: vendor/bin/phpstan analyse"

@@ -26,21 +26,19 @@ jobs:
         ports:
           - 3306:3306
     steps:
-      - name: "Checkout Repository"
-        uses: actions/checkout@v4
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.1
         with:
           php-version: 8.1
           tools: composer
-      - name: "Run PHPSTAN"
-        run: "vendor/bin/phpstan analyse"
       - name: "Check database healthy"
         run: nc -zv localhost 3306
       - name: "Install composer deps"
         run: |
           export APP_ENV=test
           composer install --prefer-dist --no-interaction --no-progress
+      - name: "Run PHPStan"
+        run: vendor/bin/phpstan analyse"
       - name: "Run migrations"
         run: |
           php bin/console d:m:m

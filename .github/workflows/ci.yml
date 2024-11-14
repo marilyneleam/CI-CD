@@ -6,6 +6,13 @@ on:
   workflow_dispatch: ~
 
 jobs:
+  phpstan:
+    name: "Install PHPStan"
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        php-version:
+            - '8.1'
   deps:
     name: "Install depedencies"
     runs-on: "ubuntu-latest"
@@ -19,6 +26,8 @@ jobs:
         ports:
           - 3306:3306
     steps:
+      - name: "Run PHPSTAN"
+        run: "vendor/bin/phpstan analyse"
       - name: "Checkout Repository"
         uses: actions/checkout@v4
       - name: Setup PHP Action
